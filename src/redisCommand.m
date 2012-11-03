@@ -9,8 +9,8 @@ while R.BytesAvailable == 0,
   pause(0.005)
   if toc >= timeout
     Output = '';
-    S = 'ERROR - NO RESPONSE';
-    break;
+    S = 'ERROR - REDIS TIMEOUT';
+    return;
   end
 end
 
@@ -18,7 +18,7 @@ response = '';
 tic
 while R.BytesAvailable > 0,
   [chunk, ~, msg] = fread(R, R.BytesAvailable);
-  response = sprintf('%s%s', response, chunk);
+  response = [response char(chunk')];
   if toc >= timeout
     break
   end

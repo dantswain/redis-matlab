@@ -2,7 +2,7 @@
 
 A [Redis](http://redis.io) client for Matlab, written in pure Matlab.  Dan Swain, dan.t.swain@gmail.com, 11/2012.
 
-This client works by establishing a TCP connection to the specified Redis server and using the Redis protocol (see [http://redis.io/topics/protocol]).
+This client works by establishing a TCP connection to the specified Redis server and using the [Redis protocol](http://redis.io/topics/protocol).
 
 This client is written in pure Matlab to provide the most portability with the least dependencies.  Because it is written purely in Matlab, it may not be as fast as a Matlab wrapper around, for example, a C or Java client.  As far as I know, no such client exists.
 

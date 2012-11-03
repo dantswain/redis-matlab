@@ -8,5 +8,5 @@ if ~strcmp(R.Status, 'open')
   return;
 end
 
-[Value, R, S] = redisCommand(R, sprintf('GET %s', key));
+[Response, R, S] = redisCommand(R, redisCommandString(sprintf('GET %s', key)));
 

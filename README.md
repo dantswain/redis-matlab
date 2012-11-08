@@ -8,9 +8,11 @@ This client is written in pure Matlab to provide the most portability with the l
 
 ## Status
 
-So far, only the Redis `GET` command works.  The other commands can be made to work by using, e.g., `redisCommand(R, redisCommandString('SET foo bar'))` (see below).
+So far, only a few commands work (`GET`, `SET`, and `PING`).  Other commands could be made to work by using, e.g., `redisCommand(R, redisCommandString('SET foo bar'))` (see below).
 
 ## Basic usage
+
+All simple values are assumed to be strings unless otherwise specified.  It's up to you to create/parse the strings.
 
 Make a redis connection:
 
@@ -18,7 +20,18 @@ Make a redis connection:
     R = redisConnection('foo.com')        % connect to foo.com on port 6739
     R = redisConnection('foo.com', 4242)  % connect to foo.com on port 4242
 
-GET the value for a key (all values are assumed to be strings):
+PING to check the connection:
 
-    redisGet(R, 'foo')  % value of foo
+    [Value, R, Status] = redisPing(R)         % Value = 'PONG'
 
+SET the value of a key:
+
+    [R, Status] = redisSet(R, 'foo', 'bar')   % Status = 'OK'
+
+GET the value for a key:
+
+    [Value, R, Status] = redisGet(R, 'foo')   % Value = 'bar', Status = 'OK'
+
+Disconnect the client:
+
+    redisDisconnect(R);

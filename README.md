@@ -32,6 +32,14 @@ GET the value for a key:
 
     [Value, R, Status] = redisGet(R, 'foo')   % Value = 'bar', Status = 'OK'
 
+HSET the value of a hash field:
+
+    [R, Status] = redisHSet(R, 'some_hash', 'field1', 'abcd')   % Status = 'OK'
+
+HGET the value of a hash field:
+
+    [Value, R, Status] = redisHGet(R, 'some_hash', 'field1')    % Value = 'abcd', Status = 'OK'
+
 Disconnect the client:
 
     redisDisconnect(R);

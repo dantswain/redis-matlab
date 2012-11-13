@@ -26,5 +26,4 @@ if Response(2) == '-'
   return
 end
 
-parts = regexp(Response, '\r\n', 'split');
-Value = parts{2};
+Value = redisParseBulkReply(Response);

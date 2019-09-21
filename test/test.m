@@ -36,7 +36,11 @@ if nargin == 2,
   msg = 'Error!';
 end
 
-assert(strcmp(s1, s2) ~= 0, sprintf('Expected %s == %s', s1, s2))
+if (iscell(s1))
+    assert(strcmp(s1, s2) ~= 0, sprintf('Expected %s == %s', s1{1}, s2))
+else
+    assert(strcmp(s1, s2) ~= 0, sprintf('Expected %s == %s', s1, s2))
+end
 
 function assert(cond, msg)
 

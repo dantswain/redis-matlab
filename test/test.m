@@ -7,6 +7,9 @@ addpath('../src')
 [R, M] = redisConnection();
 assert_string(M, 'OK');
 
+% [R, M] = redisAuth(R, '<password_if_existed>');
+% assert_string(M, 'OK');
+
 [Value, R, M] = redisPing(R);
 assert_string(Value, 'PONG');
 

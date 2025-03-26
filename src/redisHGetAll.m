@@ -4,7 +4,7 @@ S = 'OK';
 Fields = {};
 Values = {};
 
-if ~strcmp(R.status, 'open')
+if ~strcmp(R.Status, 'open')
   S = 'ERROR - NO CONNECTION';
   return;
 end

@@ -3,7 +3,7 @@ function [V, R, S] = redisHGet(R, key, field)
 S = 'OK';
 V = [];
 
-if ~strcmp(R.status, 'open')
+if ~strcmp(R.Status, 'open')
   S = 'ERROR - NO CONNECTION';
   return
 end

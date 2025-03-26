@@ -8,8 +8,8 @@ if nargin < 2,
   port = 6379;
 end
 
-r = tcpip(host, port);
-r.terminator = 'CR/LF';
+r = tcpclient(host, port);
+r.configureTerminator('CR/LF');
 fopen(r);
 
 if ~strcmp(r.Status, 'open')

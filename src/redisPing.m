@@ -2,7 +2,7 @@ function [Value, R, S] = redisPing(R)
 
 S = 'OK';
 Value = [];
-
+fopen(R);
 if ~strcmp(R.Status, 'open')
   S = 'ERROR - NO CONNECTION';
   return;

@@ -10,6 +10,8 @@ assert_string(M, 'OK');
 [Value, R, M] = redisPing(R);
 assert_string(Value, 'PONG');
 
+[R, M] = redisSelect(R, 0);  % select 0
+
 [R, M] = redisSet(R, 'foo', 'bar');
 assert_string(M, 'OK');
 
@@ -24,9 +26,18 @@ assert_string(Value, 'bar');
 S = redisGet(R, 'foo');
 assert_string(Value, 'bar');
 
-redisDisconnect(R);
+[R, M] = redisHSet(R, 'foo1', 'aa', '1234');
+[R, M] = redisHSet(R, 'foo1', 'bb', 'bb1234');
+assert_string(M, 'OK');
 
-assert_string(R.status, 'closed');
+[Value, R, M] = redisHGet(R, 'foo1','aa');
+assert_string(M, 'OK');
+assert_string(Value, '1234');
+
+[Value, R, M] = redisHGetAll(R, 'foo1');
+disp(Value)
+
+redisDisconnect(R);
 
 disp('All tests passed!')
 

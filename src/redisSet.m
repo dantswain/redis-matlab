@@ -7,7 +7,9 @@ if ~isstr(value)
   return
 end
 
-if ~strcmp(R.status, 'open')
+%fopen(R);
+
+if ~strcmp(R.Status, 'open')
   S = 'ERROR - NO CONNECTION';
   return
 end

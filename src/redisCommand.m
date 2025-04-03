@@ -5,7 +5,7 @@ fprintf(R, Cmd);
 % wait for bytes to show up
 timeout = 1.0;
 tic
-while R.BytesAvailable == 0,
+while R.NumBytesAvailable == 0,
   pause(0.005)
   if toc >= timeout
     Output = '';
@@ -13,10 +13,10 @@ while R.BytesAvailable == 0,
     return;
   end
 end
-
+R.InputBufferSize = R.NumBytesAvailable+1;
 response = '';
 tic
-while R.BytesAvailable > 0,
+while R.NumBytesAvailable > 0,
   [chunk, ~, msg] = fread(R, R.BytesAvailable);
   response = [response char(chunk')];
   if toc >= timeout
